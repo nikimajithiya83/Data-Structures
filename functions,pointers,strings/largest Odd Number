@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int largestOddNumber(const string& str){
+    int maxOdd = -1;
+    for(char c: str){
+        if(isdigit(c)){
+            int num =c-'0';
+            if(num%2!=0 && num>maxOdd){
+                maxOdd=num;
+            }
+        }
+    }
+    return maxOdd;
+} 
+int main(){
+    string str="hello12345abc";
+    int maxOdd=largestOddNumber(str);
+    if(maxOdd!=-1){
+        cout<<"Largest odd number: "<<maxOdd<<endl;
+    }else{
+        cout<<"No Odd numbers"<<endl;
+    }
+    return 0;
+}
