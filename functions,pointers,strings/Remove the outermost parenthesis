@@ -1,0 +1,35 @@
+#include<string>
+#include<iostream>
+using namespace std;
+string removeOutermostParenthesis(string s){
+    int count = 0;
+    string result;
+    for(char c:s){
+        if(c=='('){
+            if(count==0){
+                count++;
+                continue;
+            }else{
+                result+=c;
+                count++;
+            }
+        }else if(c==')'){
+            if(count==1){
+                count--;
+                continue;
+            }else{
+                result+=c;
+                count--;
+            }
+        }else{
+            result+=c;
+        }
+    }
+    return result;
+}
+int main(){
+    string s="(abc(def)ghi)";
+    string result=removeOutermostParenthesis(s);
+    cout<<"Result: "<<result<<endl;
+    return 0;
+}
