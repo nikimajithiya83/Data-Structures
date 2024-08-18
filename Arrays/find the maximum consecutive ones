@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int maxConsecutiveOnes(int arr[],int size){
+    int maxCount=0;
+    int currentCount=0;
+    for(int i=0;i<size;i++){
+        if(arr[i]==1){
+            currentCount++;
+            maxCount=max(maxCount,currentCount);
+        }
+        else{
+            currentCount=0;
+        }
+    }
+    return maxCount;
+}
+int main(){
+    int arr[]={1,1,0,1,1,1};
+    int size=6;
+    int ans=maxConsecutiveOnes(arr,size);
+    cout<<ans<<" ";
+    return 0;
+}
