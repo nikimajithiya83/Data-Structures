@@ -1,1 +1,1 @@
-There are around 40 Data Structures problems regarding arrays in this repositry. All problems are in c++. 
+There are various problems regarding different topics of Data Structures using c++. 
