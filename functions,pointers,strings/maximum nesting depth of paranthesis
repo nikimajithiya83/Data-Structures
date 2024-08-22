@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int maxNestingDepth(const string &str){
+    int maxDepth = 0;
+    int currentDepth = 0;
+    for (char c : str) {
+        if (c == '(') {
+            currentDepth++;
+            maxDepth = max(maxDepth, currentDepth);
+            }
+            else if (c == ')') {
+                currentDepth--;
+           }
+        }
+    return maxDepth;
+}
+int main(){
+    string str;
+    cout << "Enter a string: ";
+    std::getline(std::cin,str);
+    int depth = maxNestingDepth(str);
+    cout<<depth<<endl;
+    return 0;
+}
