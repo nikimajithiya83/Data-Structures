@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
+struct Charfreq{
+    char c;
+    int freq;
+};
+void sortCharbyFreq(string str){
+    vector<Charfreq> v;
+    for(char c:str){
+        bool found=false;
+        for(auto &cf:v){
+            if(cf.c==c){
+                cf.freq++;
+                found=true;
+                break;
+        }
+    }
+    if(!found){
+        v.push_back({c,1});
+    }
+}
+sort (v.begin(),v.end(),[](const Charfreq &a, const Charfreq &b){
+    return a.freq>b.freq;
+});
+for(const auto &cf:v){
+    cout<<cf.c<<" "<<cf.freq<<endl;
+}
+}
+int main(){
+    string str="abcabcabc";
+    sortCharbyFreq(str);
+    return 0;
+}
