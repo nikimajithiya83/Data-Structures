@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+#include<cctype>
+using namespace std;
+int myAtoi(string s){
+    int result=0;
+    int sign=1;
+    bool hasSign=false;
+    bool hasDigit=false;
+    for(char c: s){
+        if(c==' ' && !hasDigit && !hasSign){
+            continue;
+        }else if(c=='+'|| c=='-'){
+            if(hasSign){
+                break;
+            }
+            hasSign=true;
+            sign=(c=='+')?1:-1;
+        }else if(isdigit(c)){
+            hasDigit=true;
+            result=result*10+(c-'0');
+        }else{
+            break;
+        }
+    }
+    return sign*result;
+}
+int main(){
+    string str="   -123abc";
+    int integerValue=myAtoi(str);
+    cout<<"The integer value of the string "<<str<<" is: "<<integerValue<<endl;
+    return 0;
+}
