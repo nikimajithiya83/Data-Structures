@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+bool isPalindrome(string s){
+    int start =0;
+    int n = s.length()-1;
+    while(start<n){
+        if(s[start]!=s[n]){
+            return false;
+    }
+    start++;
+    n--;
+}
+return true;
+}
+string longestPalindromicSubstring(string s){
+    int maxLength=0;
+    string longestPalindrome="";
+    for(int i=0;i<s.length();i++){
+        for(int j=i+1;j!=s.length();j++){
+            string substr = s.substr(i,j-i);
+            if(isPalindrome(substr) && substr.length()>maxLength){
+                maxLength = substr.length();
+                longestPalindrome = substr;
+            }
+        }
+    }
+    return longestPalindrome;
+}
+int main(){
+    string s="babad";
+    cout << longestPalindromicSubstring(s) << endl;
+    return 0;
+}
