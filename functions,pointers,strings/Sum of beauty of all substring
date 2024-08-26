@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
+int beautyofSubstring(string substr){
+    vector<int> freq(26,0);
+    for(char c: substr){
+        freq[c-'a']++;
+    }
+    return *max_element(freq.begin(),freq.end());
+}
+int sumOfBeauty(string s){
+    int sum=0;
+    for(int i=0;i<s.length();i++){
+        for(int j=i+1;j!=s.length();j++){
+            string substr=s.substr(i,j-i);
+            sum+=beautyofSubstring(substr);
+        }
+    }
+    return sum;
+}
+int main(){
+    string s="aabcb";
+    cout<<sumOfBeauty(s)<<endl;
+    return 0;
+}
