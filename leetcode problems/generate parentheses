@@ -1,0 +1,28 @@
+class Solution {
+public:
+    // Helper function to generate valid parentheses
+    void gen(int n, int open, int close, string s, vector<string>& result) {
+        // Base case: If we have used all open and close parentheses
+        if (open == n && close == n) {
+            result.push_back(s);
+            return;
+        }
+
+        // Add an opening parenthesis if we still have some left
+        if (open < n) {
+            gen(n, open + 1, close, s + '(', result);
+        }
+
+        // Add a closing parenthesis if it's valid (i.e., more opens than closes)
+        if (close < open) {
+            gen(n, open, close + 1, s + ')', result);
+        }
+    }
+
+    vector<string> generateParenthesis(int n) {
+        vector<string> result;
+        string s = "";
+        gen(n, 0, 0, s, result);  // Start the recursive function
+        return result;
+    }
+};
