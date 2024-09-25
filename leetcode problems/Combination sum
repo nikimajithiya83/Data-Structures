@@ -1,0 +1,27 @@
+class Solution {
+private:
+    void generate(vector<int>& candidates, int target, vector<int>& current, vector<vector<int>>& result) {
+        if (target < 0) {
+            return;
+        }
+        if (target == 0) {
+            result.push_back(current);
+            return;
+        }
+        for (int c : candidates) {
+            if (!current.empty() && current.back() > c) {
+                continue;
+            }
+            current.push_back(c);
+            generate(candidates, target - c, current, result);
+            current.pop_back();
+        }
+    }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> current;
+        generate(candidates, target, current, result);
+        return result;
+    }
+};
