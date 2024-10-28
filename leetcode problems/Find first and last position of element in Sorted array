@@ -1,0 +1,54 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+         vector<int> result = {-1, -1}; 
+        int left = findFirst(nums, target);
+        if (left == -1) {
+            return result; 
+        }
+        int right = findLast(nums, target);
+        result[0] = left;  
+        result[1] = right;  
+        return result;
+    }
+    
+private:
+    int findFirst(const vector<int>& nums, int target) {
+        int low = 0, high = nums.size() - 1;
+        int first = -1;
+        
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                first = mid; 
+                high = mid - 1;
+            } else if (nums[mid] < target) {
+                low = mid + 1; 
+            } else {
+                high = mid - 1; 
+            }
+        }
+        
+        return first;
+    }
+    
+    int findLast(const vector<int>& nums, int target) {
+        int low = 0, high = nums.size() - 1;
+        int last = -1;
+        
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                last = mid; 
+                low = mid + 1;
+            } else if (nums[mid] < target) {
+                low = mid + 1; 
+            } else {
+                high = mid - 1; 
+            }
+        }
+        
+        return last;
+        
+    }
+};
